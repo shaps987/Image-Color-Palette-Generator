@@ -7,7 +7,7 @@ app.config['SECRET_KEY'] = 'yoursecretkey'
 # Configure the upload folder (inside static/)
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
-
+ 
 def get_top_10_hex_colors(image_path, css_colors_json="css_colors.json"):
     """
     Load an image, read CSS colors from a JSON file, cluster each unique (R,G,B)
