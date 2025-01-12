@@ -1,5 +1,11 @@
 from flask import Flask, request, render_template, redirect, url_for
 import os
+import json
+import numpy as np
+from PIL import Image
+from collections import defaultdict
+import webcolors
+from collections import defaultdict
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yoursecretkey'
@@ -14,11 +20,6 @@ def get_top_10_hex_colors(image_path, css_colors_json="css_colors.json"):
     to the closest CSS3 color by Euclidean distance, and return a dict of the
     top 10 color names -> single representative hex code.
     """
-    import json
-    import numpy as np
-    from PIL import Image
-    from collections import defaultdict
-    import webcolors
 
     # 1) Read CSS color mapping from a JSON file
     with open(css_colors_json, "r") as f:
@@ -49,7 +50,6 @@ def get_top_10_hex_colors(image_path, css_colors_json="css_colors.json"):
     unique_colors, counts = np.unique(pixels, axis=0, return_counts=True)
 
     # 6) Group by approximate CSS name
-    from collections import defaultdict
     css_groups = defaultdict(list)
     css_group_counts = defaultdict(int)
 
